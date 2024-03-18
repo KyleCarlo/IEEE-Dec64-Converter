@@ -1,0 +1,379 @@
+:root{
+    --primary-color: #192a32;
+    --secondary-color: #A8BEC9;
+    --blue: #31C4BE;
+    --orange: #f2b236;
+    --btn-shadow: #718794;
+    --accept: rgb(197, 255, 197);
+    --def-font: 'Montserrat', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* DEFAULT */
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    min-width: 354px;
+    box-sizing: border-box;
+    padding: 20px;
+    width: 100%;
+    height: 100vh;
+    background-color: var(--primary-color);
+    font-family: var(--def-font);
+    color: var(--secondary-color);
+}
+
+h1 {
+    color: var(--orange);
+}
+
+label, .outputLabel {
+    color: var(--orange);
+}
+
+button {
+    background-color: var(--secondary-color);
+    font-family: inherit;
+    font-weight: bolder;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 0 4px var(--btn-shadow);
+    position: relative;
+    top: 0px;
+    transition: 0.1s all;
+    cursor: pointer;
+    margin: 10px;
+}
+
+button:hover{
+    opacity: 0.8;
+}
+
+button:active{  
+    box-shadow: 0px -4px var(--secondary-color);
+    position: relative;
+    top: 4px;
+    background-color: var(--btn-shadow);
+}
+
+button:disabled{
+    background-color: var(--btn-shadow);
+    box-shadow: none;
+    color: var(--secondary-color);
+    cursor: not-allowed;
+}
+
+/* RESPONSIVE */
+
+/* <1075 */
+@media screen and (max-width: 1075px){ 
+    body{
+        display: revert-layer;
+    }
+
+    .main .inputDecimal{
+        position:relative;
+        top: 20px;
+    }
+
+    .footer{
+        padding: 10px 0;
+    }
+}
+
+
+/* >600 */
+@media screen and (min-width: 600px){ 
+    .title {
+        font-size: 25px;
+    }
+}
+
+/*547 - 600*/
+@media screen and (min-width: 517px) and (max-width:600px){ 
+    .title {
+        font-size: 16px;
+    }    
+
+    .main, .output {
+        scale: 0.7;
+    }
+
+    .footer {
+        font-size: 7px;
+    }
+
+    .output {
+        position: relative;
+        top: -88px;
+    }
+
+    .main {
+        position: relative;
+        top: -210px;
+    }
+
+    
+
+    .main .outputDecimal{
+        position: relative;
+        top: -25px;
+    }
+
+    .footer {
+        position: relative;
+        top: -250px;
+    }
+}
+
+@media screen and (max-width: 517px) {
+    .title {
+        font-size: 16px;
+    }
+    .main, .output {
+        scale: 0.7;
+    }
+
+    .footer {
+        font-size: 7px;
+    }
+
+    .output {
+        position: relative;
+        top: -100px;
+    }
+
+    .main {
+        position: relative;
+        top: -232px;
+    }
+
+    .main .outputDecimal{
+        position: relative;
+        top: -25px;
+    }
+
+    .footer {
+        position: relative;
+        top: -270px;
+    }
+} 
+
+/*OUTPUT SECTION*/
+.output{
+    display: flex;
+    margin: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.output > div{
+    height: 90px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: #A8BEC9 solid 2px;
+    padding: 0 2px;
+    margin: 3px;
+}
+
+.bit-container{
+    display: flex;
+}
+
+.bit{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.bit-button{
+    cursor: pointer;
+    margin: 5px 5px 7px 5px;
+    border: #31C4BE solid 3px;
+    border-radius: 100%;
+    width: 15px;
+    height: 15px;
+}
+
+/*MAIN SECTION*/
+.main {
+    display: flex;
+    margin: 20px 1vw;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap-reverse;
+}
+
+/*Input Area*/
+.inputString {
+    border: none;
+    background-color: var(--secondary-color);
+    box-shadow: 0px 0px 5px var(--blue);
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px;
+}
+
+.decimal{
+    display: flex;
+    flex-direction: column;
+}
+
+.exponent{
+    display: flex;
+}
+
+.exponent #exponent{
+    align-self: end;
+}
+
+.exponent label{
+    align-self: center;
+    position: relative;
+    top: 10px;
+}
+
+.number{
+    display: flex;
+}
+
+.submitButton{
+    width: 95.7%;
+}
+
+.rounding .inputString{
+    font-weight: bolder;
+}
+
+/*Output Area*/
+.outputDecimal{
+    display: flex;
+    flex-direction: column;
+}
+
+.outputString {
+    background-color: black;
+    box-shadow: 0px 0px 5px var(--blue);
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px;
+    height: 19.2px;
+}
+
+.outputString p{
+    color: white;
+}
+
+.normContainer, .ePrime, .ePrimeBin{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ePrimeBin .outputString p{
+    display: flex;
+    justify-content: space-around;
+}
+
+.normContainer, .ePrime, .ePrimeBin .outputString{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+.cc1, .cc2, .cc3, .cc4, .cc5{
+    display: flex;
+    align-items: center;
+}
+
+.prepContainer, .ccContainer{
+    display: flex;
+    justify-content: center;
+}
+
+.normContainer .outputString p{
+    min-width: 243px;
+}
+
+.ePrime .outputString p{
+    width: 39px;
+}
+
+.ePrimeBin .outputString p{
+    width: 106px;
+}
+
+.cc1 .outputString p, 
+.cc2 .outputString p, 
+.cc3 .outputString p, 
+.cc4 .outputString p, 
+.cc5 .outputString p{
+    width: 29.238px;
+}
+
+.msnhexContainer{
+    display: flex;
+}
+
+.msContainer{
+    display: flex;
+    align-items: center;
+}
+
+.msContainer .outputString p{
+    text-align: center;
+    width: 9.75px;
+}
+
+.msbinContainer{
+    display: flex;
+    align-items: center;
+}
+
+.msbinContainer .outputString p{
+    display: flex;
+    justify-content: space-around;
+    width: 42.375px;
+}
+
+.hexContainer{
+    display: flex;
+    align-items: center;
+}
+
+.hexContainer .outputString p {
+    display: block;
+    min-width: 174.625px;
+}
+
+.hexContainer .outputLabel {
+    display: block;
+    min-width: 114.89px;
+}
+
+/*FOOTER*/
+.footer {
+    text-align: right;
+    font-size: 9px;
+    color: var(--orange);
+}
+
+.footer *{
+    margin: 0 5px;
+}
+
+.footer span{
+    display: inline-block;
+}

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decimal-64 Converter</title>
+    <link rel="stylesheet" href="view/style.css">
+    <link rel="icon" type="image/x-icon" href="view/ieee.ico">
+</head>
+<body>
+    <h1 class="title">IEEE-754 Decimal-64 Floating-point Converter</h1>
+    <section class="output">
+        <div id="signContainer">
+            <p>S</p>
+            <div class="bit-container">
+                <!-- INSERT BIT 0 HERE -->
+            </div>
+        </div>
+        <div id="combiField">
+            <p>CF</p>
+            <div class="bit-container">
+                <!-- INSERT BIT 1-5 HERE -->
+            </div>
+        </div>
+        <div id="expoField">
+            <p>EC</p>
+            <div class="bit-container">
+                <!-- INSERT BIT 6-13 HERE -->
+            </div>
+        </div>
+        <div id="ccField1">
+            <p>CC1</p>
+            <div class="bit-container">
+                <!-- INSERT BIT 14-23 HERE -->
+            </div>
+        </div>
+        <div id="ccField2">
+            <p>CC2</p>
+            <div class="bit-container">
+                <!-- INSERT BIT 24-33 HERE -->
+            </div>
+        </div>
+        <div id="ccField3">
+            <p>CC3</p>
+            <div class="bit-container">
+                <!-- INSERT BIT 34-43 HERE -->
+            </div>
+        </div>
+        <div id="ccField4">
+            <p>CC4</p>
+            <div class="bit-container">
+                <!-- INSERT BIT 44-53 HERE -->
+            </div>
+        </div>
+        <div id="ccField5">
+            <p>CC5</p>
+            <div class="bit-container">
+                <!-- INSERT BIT 54-63 HERE -->
+            </div>
+        </div>
+    </section>
+    <section class="main">
+        <div class="inputDecimal">
+            <div class="number">
+                <div class="decimal">
+                    <label for="decimal">Decimal Input</label>
+                    <input class="inputString" type="text" id="decimal" name="decimal" placeholder="Enter a decimal number" autocomplete="off">
+                </div>
+                <div class="exponent">
+                    <label for="exponent">x10^</label>
+                    <input class="inputString" type="text" id="exponent" name="exponent" placeholder="Enter an exponent" autocomplete="off">
+                </div>
+            </div>
+            <div class="rounding">
+                <label for="rounding">Rounding Method</label>
+                <select class="inputString" name="rounding" id="rounding">
+                    <option value="trun">Truncate</option>
+                    <option value="ceil">Ceiling</option>
+                    <option value="floor">Floor</option>
+                    <option value="even">Nearest, Ties to Even</option>
+                </select>
+            </div>
+            <button class="submitButton" type="submit">Convert</button>
+        </div>
+        <div class="outputDecimal">
+            <div class="prepContainer">
+                <div class="normContainer">
+                    <p class="outputLabel">Normalized Form</p>
+                    <div class="outputString"><p></p></div>
+                </div>
+                <div class="ePrime">
+                    <p class="outputLabel">E'</p>
+                    <div class="outputString"><p></p></div>
+                </div>
+                <div class="ePrimeBin">
+                    <p class="outputLabel">E' (bin)</p>
+                    <div class="outputString"><p></p></div>
+                </div>
+            </div>
+            <div class="ccContainer">
+                <div class="cc1">
+                    <p class="outputLabel">CC1</p>
+                    <div class="outputString"><p></p></div>
+                </div>
+                <div class="cc2">
+                    <p class="outputLabel">CC2</p>
+                    <div class="outputString"><p></p></div>
+                </div>
+                <div class="cc3">
+                    <p class="outputLabel">CC3</p>
+                    <div class="outputString"><p></p></div>
+                </div>
+                <div class="cc4">
+                    <p class="outputLabel">CC4</p>
+                    <div class="outputString"><p></p></div>
+                </div>
+                <div class="cc5">
+                    <p class="outputLabel">CC5</p>
+                    <div class="outputString"><p></p></div>
+                </div>
+            </div>
+            <div class="msnhexContainer">
+                <div class="msContainer">
+                    <p class="outputLabel">MSd</p>
+                    <div class="outputString"><p></p></div>
+                </div>
+                <div class="msbinContainer">
+                    <p class="outputLabel">MSd (bin)</p>
+                    <div class="outputString"><p></p></div>
+                </div>
+                <div class="hexContainer">
+                    <p class="outputLabel">IEEE-754 (hex)</p>
+                    <div class="outputString"><p></p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="footer">
+        <p>Created by:</p>
+        <span>Dy, Sealtiel</span>
+        <span>Encinas, Robert Joachim</span>
+        <span>Go, Daphne Janelyn</span>
+        <span>Lasala, Kyle Carlo</span>
+        <span>Manlises, Maria Monica</span>
+    </section>
+</body>
+</html>
+<script type="module" src="view/index.js"></script>
+<script type="module" src="view/io.js"></script>
