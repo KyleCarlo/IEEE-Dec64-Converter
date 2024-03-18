@@ -183,7 +183,11 @@ const round = (whole, decimal, roundMode) => {
                 if(isEven) {
                     return whole
                 } else {
-                    return (parseInt(whole) + 1).toString()
+                    if(parseInt(whole) > 0) {
+                        return (parseInt(whole) + 1).toString()
+                    } else {
+                        return (parseInt(whole) - 1).toString()
+                    }
                 }
             } else {
                 return (Math.round(parseFloat(whole + "." + decimal))).toString()
