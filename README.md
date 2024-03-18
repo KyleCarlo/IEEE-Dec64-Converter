@@ -12,7 +12,15 @@
     3. Option to output results to a text file.
 
 ## Usage
-- NOT YET PUBLISHED (work in progress)
+### Online 
+- accessible at this link: https://kylecarlo.github.io/IEEE-Dec64-Converter/
+### Local
+- download the repository (zip)
+- extract the zip file
+- run a server
+    - if using VScode, install the extension **Live Server** *(by Ritwick Dey)*
+    - open the directory where the *index.html* is located
+    - run the server
 
 ## Authors
 - Sealtiel Dy (sealtiel_dy@dlsu.edu.ph)
