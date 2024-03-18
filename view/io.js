@@ -15,17 +15,19 @@ var cc3 = document.querySelector('.cc3 .outputString p');
 var cc4 = document.querySelector('.cc4 .outputString p');
 var cc5 = document.querySelector('.cc5 .outputString p');
 var ieeeContainer = document.querySelector('.hexContainer .outputString p');
-var submitButton = document.querySelector('.inputDecimal .submitButton');
+var convertButton = document.querySelectorAll('.inputDecimal .submitButton')[0];
+var exportButton = document.querySelectorAll('.inputDecimal .submitButton')[1];
 var bitContainers = document.querySelectorAll('.bit');
 
 listenToInput();
 
 function listenToInput() {
-    submitButton.addEventListener('click', function() {
+    convertButton.addEventListener('click', function() {
         console.log(inputDecimal.value, inputExponent.value, inputRoundMode.value);
         var result = convert(inputDecimal.value, inputExponent.value, inputRoundMode.value);
         resetState();
         updateState(result);
+        exportButton.disabled = false;
     });
 }
 
