@@ -22,6 +22,35 @@
     - open the directory where the *index.html* is located
     - run the server
 
+## Test Cases
+### Normal Cases
+![normal case](tests/normal_case.png)
+#### with different rounding algorithms
+- truncate positive input
+    ![truncate positive](tests/positive_trun.png)
+- truncate negative input
+    ![truncate negative](tests/negative_trun.png)
+- ceil positive input
+    ![ceil positive](tests/positive_ceil.png)
+- ceil negative input
+    ![ceil negative](tests/negative_ceil.png)
+- floor positive input
+    ![floor positive](tests/positive_floor.png)
+- floor negative input
+    ![floor negative](tests/negative_floor.png)
+- round to nearest, ties to even of positive input
+    ![rtnte positive](tests/positive_even.png)
+- round to nearest, ties to even of negative input
+    ![rtnte negative](tests/negative_even.png)
+### Special Case
+#### Infinity
+- Positive Infinity (exponent too large; ***e > 384***)
+    ![positive infinity case](tests/inf_case.png)
+- Negative Infinity (exponent too small; ***e < -398***)
+    ![negative infinity case](tests/neg_inf_case.png)
+#### Not A Number (***NaN***)
+![NaN case](tests/nan_case.png)
+
 ## Authors
 - Sealtiel Dy (sealtiel_dy@dlsu.edu.ph)
 - Robert Joachim Encinas (robert_joachim_encinas@dlsu.edu.ph)

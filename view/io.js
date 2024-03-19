@@ -89,7 +89,7 @@ function resetState() {
 
 function updateState(result) {
     // NaN case
-    if (result.type == 'NaN' || result.type == 'Zero'){
+    if (result.type == 'NaN'){
         normContainer.innerHTML = result.normalizedForm;
     }
     // Infinity case
@@ -97,7 +97,7 @@ function updateState(result) {
         normContainer.innerHTML = 'inf';
     } 
     // Normal case
-    else if (result.type == 'Normal'){
+    else if (result.type == 'Normal' || result.type == 'Zero'){
         normContainer.innerHTML = result.normalizedForm;
         
         eContainer.innerHTML = result.ePrime;
