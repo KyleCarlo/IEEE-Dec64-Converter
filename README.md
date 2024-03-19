@@ -52,8 +52,12 @@
 ![NaN case](tests/nan_case.png)
 
 ## Demo
-- If the video is not playing, click this <a href="https://youtu.be/KWA2y0VHfOY?si=dP2eMzxmUtLxBQ7G">link</a>.
-https://github.com/KyleCarlo/IEEE-Dec64-Converter/assets/90784458/018ba79f-373a-4981-a4b0-1060bb30cb89
+If the video is not playing, click this <a href="https://youtu.be/KWA2y0VHfOY?si=dP2eMzxmUtLxBQ7G">link</a> or check the video ***demo.mp4*** uploaded in this repository.
+
+
+https://github.com/KyleCarlo/IEEE-Dec64-Converter/assets/90784458/7e2b6eb7-5918-4797-83cb-2ad7f2f78efa
+
+
 
 ## Authors
 - Sealtiel Dy (sealtiel_dy@dlsu.edu.ph)
