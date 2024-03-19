@@ -52,6 +52,7 @@
 ![NaN case](tests/nan_case.png)
 
 ## Demo
+- If the video is not playing, click this <a href="https://youtu.be/KWA2y0VHfOY?si=dP2eMzxmUtLxBQ7G">link</a>.
 https://github.com/KyleCarlo/IEEE-Dec64-Converter/assets/90784458/018ba79f-373a-4981-a4b0-1060bb30cb89
 
 ## Authors
