@@ -18,17 +18,55 @@ var ieeeContainer = document.querySelector('.hexContainer .outputString p');
 var convertButton = document.querySelectorAll('.inputDecimal .submitButton')[0];
 var exportButton = document.querySelectorAll('.inputDecimal .submitButton')[1];
 var bitContainers = document.querySelectorAll('.bit');
-
+var content = "";
 listenToInput();
+listenToExport();
 
 function listenToInput() {
     convertButton.addEventListener('click', function() {
-        console.log(inputDecimal.value, inputExponent.value, inputRoundMode.value);
         var result = convert(inputDecimal.value, inputExponent.value, inputRoundMode.value);
         resetState();
         updateState(result);
         exportButton.disabled = false;
+        content = "INPUT\nMantissa: " + inputDecimal.value + "\n" + "Exponent: " + inputExponent.value + "\n" + "Rounding Mode: ";
+        switch (inputRoundMode.value) {
+            case 'trun':
+                content += "Truncate\n";
+                break;
+            case 'floor':
+                content += "Floor\n";
+                break;
+            case 'ceil': 
+                content += "Ceiling\n";
+                break;
+            case 'even':
+                content += "Round To Nearest, Ties to Even\n";
+                break;
+            default:
+                break;
+        }
+        content += "\nIEEE 754 decimal representation: \n(binary)\n";
+        for (let index = 0; index < result.ieeeBin.length; index++) {
+            content += result.ieeeBin[index];
+            if (index == 0 || index == 5 || index == 13 || 
+                index == 23 || index == 33 || index == 43 || index == 53 ){
+                content += ' ';
+            }
+        }
+        content += "\n(hexadecimal)\n" + result.ieeeHex + "\n";
     });
+}
+
+function listenToExport() {
+    exportButton.addEventListener('click', function() {
+        var file = new Blob([content], {type: 'text/plain'});
+        var a = document.createElement('a');
+        a.href = URL.createObjectURL(file);
+        a.download = 'output.txt';
+        a.click();
+        exportButton.disabled = true;
+    });
+
 }
 
 function resetState() {
@@ -46,7 +84,6 @@ function resetState() {
     for (let index = 0; index < bitContainers.length; index++) {
         bitContainers[index].childNodes[1].innerHTML = '0';
         bitContainers[index].childNodes[0].style.backgroundColor = 'revert-layer';
-        console.log(bitContainers[index].childNodes[1])
     }
 }
 
