@@ -51,9 +51,12 @@
 #### Not A Number (***NaN***)
 ![NaN case](tests/nan_case.png)
 
+## Demo
+![Video Demonstration is temporarily unavailable but you can check it here in this repository.](https://youtu.be/KWA2y0VHfOY "(CSARCH2) IEEE-754 Decimal-64 Floating-point Converter")
+
 ## Authors
 - Sealtiel Dy (sealtiel_dy@dlsu.edu.ph)
 - Robert Joachim Encinas (robert_joachim_encinas@dlsu.edu.ph)
 - Daphne Janelyn Go (daphne_janelyn_go@dlsu.edu.ph)
-- Kyle Carlo Lasala (kyle_lasala@dlsu.edu.ph</a>)
+- Kyle Carlo Lasala (kyle_lasala@dlsu.edu.ph)
 - Maria Monica Manlises (maria_monica_manlises@dlsu.edu.ph)
