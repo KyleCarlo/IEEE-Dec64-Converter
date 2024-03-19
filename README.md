@@ -52,7 +52,7 @@
 ![NaN case](tests/nan_case.png)
 
 ## Demo
-![Video Demonstration is temporarily unavailable but you can check it here in this repository.](https://youtu.be/KWA2y0VHfOY "(CSARCH2) IEEE-754 Decimal-64 Floating-point Converter")
+https://github.com/KyleCarlo/IEEE-Dec64-Converter/assets/90784458/018ba79f-373a-4981-a4b0-1060bb30cb89
 
 ## Authors
 - Sealtiel Dy (sealtiel_dy@dlsu.edu.ph)
