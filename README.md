@@ -42,7 +42,7 @@
     ![rtnte positive](tests/positive_even.png)
 - round to nearest, ties to even of negative input
     ![rtnte negative](tests/negative_even.png)
-### Special Case
+### Special Cases
 #### Infinity
 - Positive Infinity (exponent too large; ***e > 384***)
     ![positive infinity case](tests/inf_case.png)
