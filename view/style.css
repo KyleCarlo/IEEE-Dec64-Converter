@@ -248,8 +248,13 @@ button:disabled{
     display: flex;
 }
 
+.convertNexport{
+    display: flex;
+}
+
 .submitButton{
-    width: 95.7%;
+    /* width: 95.7%; */
+    width: calc(95.7% / 2)
 }
 
 .rounding .inputString{
