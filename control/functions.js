@@ -66,7 +66,7 @@ const preprocess = (number, exponent, roundMode) => {
         var overflowSignal = temp.overflowSignal
 
         // Check for special cases
-        const eNumeric = parseInteger(exponent)
+        const eNumeric = BigInt(exponent)
         if(eNumeric > eMaxNormalized || overflowSignal === true) {
             systemState.type = "Infinity"
             systemState.normalizedForm = "Number Too Large"
@@ -122,14 +122,14 @@ const splitNumber = (number) => {
 const normalize = (number, exponent, roundMode) => {    
     var { whole, decimal } = splitNumber(number)
     var negativeFactor = 0
-    if(parseInteger(whole) < 0) {
+    if(BigInt(whole) < BigInt(0)) {
         negativeFactor = 1
     }
     var wholeLength = whole.length
-    exponent = parseInteger(exponent)
+    exponent = BigInt(exponent)
     
     while(wholeLength - negativeFactor !== digits) {
-        if((decimal.length === 0 || parseInteger(decimal) === 0) && wholeLength - negativeFactor < digits) {
+        if((decimal.length === 0 || BigInt(decimal) === BigInt(0)) && wholeLength - negativeFactor < digits) {
             break
         }
 
@@ -188,8 +188,8 @@ const round = (whole, decimal, roundMode) => {
         case "trun":
             return { value: whole, overflowSignal: false}
         case "ceil":
-            if(parseInteger(decimal) !== 0 && parseInteger(whole) > 0) {
-                var temp = parseInteger(whole) + 1
+            if(BigInt(decimal) !== 0 && BigInt(whole) > 0) {
+                var temp = BigInt(whole) + BigInt(1)
                 var negativeFactor = (temp < 0) ? 1 : 0
                 temp = temp.toString()
                 if(temp.length - negativeFactor > digits) {
@@ -205,8 +205,8 @@ const round = (whole, decimal, roundMode) => {
                 return { value: whole, overflowSignal: false}
             }
         case "floor":
-            if(parseInteger(decimal) !== 0 && parseInteger(whole) < 0) {
-                var temp = parseInteger(whole) + 1
+            if(BigInt(decimal) !== 0 && BigInt(whole) < 0) {
+                var temp = BigInt(whole) + BigInt(1)
                 var negativeFactor = (temp < 0) ? 1 : 0
                 temp = temp.toString()
                 if(temp.length - negativeFactor > digits) {
@@ -222,17 +222,17 @@ const round = (whole, decimal, roundMode) => {
                 return { value: whole, overflowSignal: false}
             }
         case "even":
-            const tieLine = 5 * Math.pow(10, decimal.length - 1)
-            const numericDec = parseInteger(decimal)
+            const tieLine = BigInt(5 * Math.pow(10, decimal.length - 1))
+            const numericDec = BigInt(decimal)
             const isTie = numericDec === tieLine
             if(isTie) {
-                const isEven = (parseInteger(whole[whole.length - 1]) % 2 === 0)
+                const isEven = (BigInt(whole) % BigInt(2) === BigInt(0))
 
                 if(isEven) {
                     return { value: whole, overflowSignal: false}
                 } else {
-                    if(parseInteger(whole) > 0) {
-                        var temp = parseInteger(whole) + 1
+                    if(BigInt(whole) > 0) {
+                        var temp = BigInt(whole) + BigInt(1)
                         var negativeFactor = (temp < 0) ? 1 : 0
                         temp = temp.toString()
                         if(temp.length - negativeFactor > digits) {
@@ -245,7 +245,7 @@ const round = (whole, decimal, roundMode) => {
 
                         return { value: temp.toString(), overflowSignal: false}
                     } else {
-                        var temp = parseInteger(whole) - 1
+                        var temp = BigInt(whole) - BigInt(1)
                         var negativeFactor = (temp < 0) ? 1 : 0
                         temp = temp.toString()
                         if(temp.length - negativeFactor > digits) {
@@ -260,10 +260,10 @@ const round = (whole, decimal, roundMode) => {
                     }
                 }
             } else {
-                const sign = (parseInteger(whole) < 0) ? -1 : 1
+                const sign = (whole[0] === "-") ? -1 : 1
 
-                if(parseInteger(decimal) > tieLine) {
-                    return { value: parseInteger(whole + 1 * sign).toString(), overflowSignal: false}
+                if(BigInt(decimal) > tieLine) {
+                    return { value: (BigInt(whole) + BigInt(1) * BigInt(sign)).toString(), overflowSignal: false}
                 } else {
                     return { value: whole, overflowSignal: false}
                 }
@@ -278,7 +278,7 @@ const toDec64 = (value, exponent, code) => {
     var count = 0
     for(var i = 0; i < 64; i += 4) {
         count++
-        systemState.ieeeHex += parseInteger(systemState.ieeeBin.slice(i, i + 4), 2).toString(digits).toUpperCase()
+        systemState.ieeeHex += parseInt(systemState.ieeeBin.slice(i, i + 4), 2).toString(digits).toUpperCase()
         if(count % 4 === 0) {
             systemState.ieeeHex += " "
         }
@@ -289,14 +289,14 @@ const toDec64 = (value, exponent, code) => {
 const toBinary = (value, exponent, code) => {
     systemState.ieeeBin = ""
     var negativeFactor = 0
-    if(parseInteger(exponent) < eMinDenormalized) {
+    if(BigInt(exponent) < eMinDenormalized) {
         systemState.ePrime = bias.toString()
         systemState.ePrimeBin = bias.toString(2).padStart(10, "0")
-    } else if(parseInteger(exponent) > eMaxDenormalized) {
-        systemState.ePrime = (parseInteger(exponent) + bias)
+    } else if(BigInt(exponent) > eMaxDenormalized) {
+        systemState.ePrime = (BigInt(exponent) + BigInt(bias))
         systemState.ePrimeBin = "Exponent Too Large"
     } else {
-        systemState.ePrime = (parseInteger(exponent) + bias)
+        systemState.ePrime = (BigInt(exponent) + BigInt(bias))
         systemState.ePrimeBin = systemState.ePrime.toString(2).padStart(10, "0")
     }
 
@@ -309,19 +309,19 @@ const toBinary = (value, exponent, code) => {
         systemState.ieeeBin += "0"
         systemState.MSd = value[0]
     }
-    systemState.MSdBin = parseInteger(systemState.MSd).toString(2).padStart(4, "0")
+    systemState.MSdBin = BigInt(systemState.MSd).toString(2).padStart(4, "0")
 
     switch(code) {
         case "Zero":
         case "Normal":
             //Combination Field
-            if(parseInteger(systemState.MSd) > 7) {
+            if(BigInt(systemState.MSd) > 7) {
                 systemState.ieeeBin += "11"
                 systemState.ieeeBin += systemState.ePrimeBin.slice(0, 2)
-                systemState.ieeeBin += (parseInteger(systemState.MSd).toString(2)[3])
+                systemState.ieeeBin += (BigInt(systemState.MSd).toString(2)[3])
             } else {
                 systemState.ieeeBin += systemState.ePrimeBin.slice(0, 2)
-                systemState.ieeeBin += (parseInteger(systemState.MSd).toString(2)).padStart(3, "0")
+                systemState.ieeeBin += (BigInt(systemState.MSd).toString(2)).padStart(3, "0")
             }
             //Exponent Continuation
             systemState.ieeeBin += systemState.ePrimeBin.slice(2)
@@ -368,7 +368,7 @@ const getCoefficients = (string) => {
 const toBCD = (numString) => {
     var digitString = ""
     for(const digit of numString) {
-        digitString += parseInteger(digit).toString(2).padStart(4, "0")
+        digitString += BigInt(digit).toString(2).padStart(4, "0")
     }
 
     const encoding = BCDMap[digitString[0] + digitString[4] + digitString[8]]
@@ -389,24 +389,6 @@ const convert = (number, exp, roundMode) => {
     const {value, exponent } = preprocess(number, exp, roundMode)
     toDec64(value, exponent, systemState.type)
     return systemState
-}
-
-const parseInteger = (string) => {
-    var intRepresentation = 0
-    var isNegative = false
-    for(var i = 0; i < string.length; i++) {
-        if(i === 0 && string[i] === "-") {
-            isNegative = true
-            continue
-        }
-
-        intRepresentation += parseInt(string[i])
-        if(i < string.length - 1) {
-            intRepresentation *= 10
-        }
-    }
-
-    return (isNegative) ? intRepresentation * -1 : intRepresentation
 }
 
 export { convert }
