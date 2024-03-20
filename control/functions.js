@@ -138,6 +138,24 @@ const normalize = (number, exponent, roundMode) => {
         }
         wholeLength = whole.length
     }
+
+    //Denormalize if needed
+    if(exponent > eMaxNormalized && exponent <= eMaxDenormalized) {
+        var change = 0
+        while(exponent > eMaxNormalized) {
+            if(whole.length - negativeFactor === digits) {
+                break
+            }
+
+            if(decimal.length === 0) {
+                decimal = "0"
+            }
+
+            ({ whole, decimal } = shiftRightString(whole, decimal))
+            exponent--
+        }
+    }
+
     exponent = exponent.toString()
     const value = round(whole, decimal, roundMode)
     return {value, exponent}
@@ -314,6 +332,7 @@ const toBCD = (numString) => {
 const convert = (number, exp, roundMode) => {
     const {value, exponent } = preprocess(number, exp, roundMode)
     toDec64(value, exponent, systemState.type)
+    console.log(systemState)
     return systemState
 }
 
