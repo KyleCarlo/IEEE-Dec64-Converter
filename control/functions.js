@@ -63,7 +63,7 @@ const preprocess = (number, exponent, roundMode) => {
         ({ value, exponent } = normalize(number, exponent, roundMode))
         // Check for special cases
         const eNumeric = parseInt(exponent)
-        if(eNumeric > eMaxDenormalized) {
+        if(eNumeric > eMaxNormalized) {
             systemState.type = "Infinity"
             systemState.normalizedForm = "Number Too Large"
         } else if(eNumeric < eMinDenormalized || parseFloat(value) === 0) {
