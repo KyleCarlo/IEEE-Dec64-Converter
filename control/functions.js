@@ -189,9 +189,7 @@ const round = (whole, decimal, roundMode) => {
             return { value: whole, overflowSignal: false}
         case "ceil":
             if(parseInteger(decimal) !== 0 && parseInteger(whole) > 0) {
-                var temp = parseInteger(whole)
-                console.log(temp)
-                console.log(temp + 1)
+                var temp = parseInteger(whole) + 1
                 var negativeFactor = (temp < 0) ? 1 : 0
                 temp = temp.toString()
                 if(temp.length - negativeFactor > digits) {
