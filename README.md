@@ -1,7 +1,7 @@
 # IEEE-754 Decimal-64 Converter
 
 ## Overview 
-- This repository contains a Decimal to IEEE-754 Decimal-64 floating-point converter, developed as a course requirement for CSARCH2 (Computer Architecture) at De La Salle University - Manila. The converter is designed to handle large numbers with more than 16 digits, supporting special cases like *NaN*. It outputs results in binary and hexadecimal forms, with an option to save the results to a text file.
+- This repository contains a Decimal to IEEE-754 Decimal-64 floating-point converter, developed as a course requirement for CSARCH2 (Computer Architecture) at De La Salle University - Manila. The converter is designed to handle large numbers with more than 16 digits, supporting special cases like *NaN*. It outputs results in binary and hexadecimal forms, with an option to save the results to a text file. This READMe.md file serves as the analysis writeup for the project.
 
 ## Features
 - **Input**: Accepts decimal numbers in base-10 format, supporting more than 16 digits. Users can choose their preferred rounding method.
@@ -80,16 +80,18 @@ https://github.com/KyleCarlo/IEEE-Dec64-Converter/assets/90784458/237c3010-54a0-
         - Else if ***MSd*** is a minor number ***(0 to 7)***, the 4th and 3rd bits are set to the 9th and 8th bits of ***normalized binary exponent (e')*** respectively and the 2nd, 1st, 0th bits are set to the 2nd, 1st, 0th bits of binary ***(MSd)***.
     9. The ***exponent continuation field (EC)*** are set to 7th to 0th bits of ***normalized binary exponent (e')***.
     10. The ***coefficient continuation*** will contain the densley packed BCD (Binary Coded Decimal) of the remaining whole decimal digits.
-### Problems Encountered
-#### Limitations of Javascript
-- **Challenge**: math error
-- **Solution**: converted BigInt
-#### Catching the Special Cases
-- **Challenge**: hard to catch, found out while debugging
-- **Solution**: bunch of if else
-#### Switching between String and Number Data Type
-- **Challenge**: input as a string but needs to convert to number data type
-- **Solution**: carefully handled the conversion between string and number
+### Problems Encountered:
+1. **JavaScript Math Error Handling**:
+   - *Challenge*: Encountering Math errors due to limitations in JavaScript's handling of high-precision numbers.
+   - *Solution*: The issue was mitigated by converting to BigInt, ensuring accurate arithmetic operations.
+
+2. **Special Cases Handling**:
+   - *Challenge*: Identifying and handling special cases such as NaN posed difficulties during development.
+   - *Solution*: This challenge was addressed by implementing conditional statements to detect and manage special cases effectively and through extensive testing.
+
+3. **Data Type Conversion**:
+   - *Challenge*: Managing data type conversions between string and numeric types, given that inputs were provided as strings.
+   - *Solution*: This was handled by carefully managing the conversio process, ensuring seamless transitions between string and number data types to maintain accuracy in calculations.
 
 ## Authors
 - Sealtiel Dy (sealtiel_dy@dlsu.edu.ph)
