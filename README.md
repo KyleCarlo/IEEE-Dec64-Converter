@@ -58,6 +58,38 @@ If the video is not playing, click this <a href="https://youtu.be/3LneY9X8juU">l
 https://github.com/KyleCarlo/IEEE-Dec64-Converter/assets/90784458/237c3010-54a0-4235-aad3-66e192fbd2b8
 
 
+## Analysis
+### System Design
+- The entire project used ***HTML, CSS, and JS***.
+- The web application applied ***MVC (model-view-controller) application architecture***. The model and view components can be seen in the ***view/*** directory. The controller component can be seen in the ***control/*** directory.
+- The following pseudocode is applied to the web application to simulate the conversion of decimal into IEEE 754 Decimal-64 floating point format
+    1. Takes the input mantissa, exponent, and rounding mode as a string.
+    2. Check if the mantissa and exponent is a valid number. If either mantissa or exponent is invalid, set the state to ***NaN*** and then skip to step 6. Else, proceed to step 3.
+    3. Normalize into IEEE Decimal-64 Normalized Format (16 whole decimal digits).
+    4. If the normalized form has fractional part, round off the normalized form according to rounding mode.
+    5. Check the exponent. 
+        - If the exponent is greater than ***369 (Max Normalized)***, then set the state to ***Infinity***. 
+        - Else if the exponent is less than ***-383 (Min Normalized)***, then set the state to ***Zero*** and set the number to *0x10^0*.
+    6. Check the state. 
+        - If the state is ***NaN***, set the ***combination field (CF)*** to all **11111** and set the ***sign bit (S)*** to **0**. Set the ***exponent continuation (EC)*** and ***coefficient continuation (CC)*** to **0** and stop already. 
+        - Else if the state is ***Infinity***, then set the ***combination field (CF)*** to **11110** and set the ***sign bit (S)*** to **1** if the sign of mantissa is negative or set to **0** if the sign of mantissa is positive. Set the ***exponent continuation (EC)*** and ***coefficient continuation (CC)*** to **0** and stop already. 
+        - Else if the state is ***Normal*** or ***Zero***, proceed to step 7.
+    7. Make the ***sign bit (S)*** to **0** if the mantissa is positive or set it to **1** if the mantissa is negative.
+    8. The ***combination field (CF)*** depends on the ***most significant digit of mantissa (MSd)***. (Note that 0th bit is least significant bit of CF and 4th bit is the most significant bit of CF).
+        - If ***MSd*** is a major number ***(8 or 9)***, then the 4th and 3rd bits are set to **11**, the 2nd and 1st bits are set to the 9th and 8th bits of ***normalized binary exponent (e')*** respectively and the 0th bit is set to the least significant bit of binary ***(MSd)***.
+        - Else if ***MSd*** is a minor number ***(0 to 7)***, the 4th and 3rd bits are set to the 9th and 8th bits of ***normalized binary exponent (e')*** respectively and the 2nd, 1st, 0th bits are set to the 2nd, 1st, 0th bits of binary ***(MSd)***.
+    9. The ***exponent continuation field (EC)*** are set to 7th to 0th bits of ***normalized binary exponent (e')***.
+    10. The ***coefficient continuation*** will contain the densley packed BCD (Binary Coded Decimal) of the remaining whole decimal digits.
+### Problems Encountered
+#### Limitations of Javascript
+- **Challenge**: math error
+- **Solution**: converted BigInt
+#### Catching the Special Cases
+- **Challenge**: hard to catch, found out while debugging
+- **Solution**: bunch of if else
+#### Switching between String and Number Data Type
+- **Challenge**: input as a string but needs to convert to number data type
+- **Solution**: carefully handled the conversion between string and number
 
 ## Authors
 - Sealtiel Dy (sealtiel_dy@dlsu.edu.ph)
