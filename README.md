@@ -44,9 +44,9 @@
     ![rtnte negative](tests/negative_even.png)
 ### Special Cases
 #### Infinity
-- Positive Infinity (exponent too large; ***e > 384***)
+- Positive Infinity (exponent too large; ***e' > 369***)
     ![positive infinity case](tests/inf_case.png)
-- Negative Infinity (exponent too small; ***e < -398***)
+- Negative Infinity (exponent too small; ***e' < -383***)
     ![negative infinity case](tests/neg_inf_case.png)
 #### Not A Number (***NaN***)
 ![NaN case](tests/nan_case.png)
