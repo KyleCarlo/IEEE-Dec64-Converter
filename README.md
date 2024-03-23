@@ -54,7 +54,11 @@
 ## Demo
 If the video is not playing, click this <a href="https://youtu.be/KWA2y0VHfOY?si=dP2eMzxmUtLxBQ7G">link</a> or check the video ***demo.mp4*** uploaded in this repository.
 
-https://github.com/KyleCarlo/IEEE-Dec64-Converter/assets/90784458/60cab80a-aefb-4004-8f80-332626101246
+
+
+https://github.com/KyleCarlo/IEEE-Dec64-Converter/assets/90784458/237c3010-54a0-4235-aad3-66e192fbd2b8
+
+
 
 ## Authors
 - Sealtiel Dy (sealtiel_dy@dlsu.edu.ph)
