@@ -289,16 +289,22 @@ const toDec64 = (value, exponent, code) => {
 const toBinary = (value, exponent, code) => {
     systemState.ieeeBin = ""
     var negativeFactor = 0
-    if(BigInt(exponent) < eMinDenormalized) {
-        systemState.ePrime = bias.toString()
-        systemState.ePrimeBin = bias.toString(2).padStart(10, "0")
-    } else if(BigInt(exponent) > eMaxDenormalized) {
-        systemState.ePrime = (BigInt(exponent) + BigInt(bias))
-        systemState.ePrimeBin = "Exponent Too Large"
+    if(code !== "NaN") {
+        if(BigInt(exponent) < eMinDenormalized) {
+            systemState.ePrime = bias.toString()
+            systemState.ePrimeBin = bias.toString(2).padStart(10, "0")
+        } else if(BigInt(exponent) > eMaxDenormalized) {
+            systemState.ePrime = (BigInt(exponent) + BigInt(bias))
+            systemState.ePrimeBin = "Exponent Too Large"
+        } else {
+            systemState.ePrime = (BigInt(exponent) + BigInt(bias))
+            systemState.ePrimeBin = systemState.ePrime.toString(2).padStart(10, "0")
+        }
     } else {
-        systemState.ePrime = (BigInt(exponent) + BigInt(bias))
-        systemState.ePrimeBin = systemState.ePrime.toString(2).padStart(10, "0")
+        systemState.ePrime = "NaN"
+        systemState.ePrimeBin = "NaN"
     }
+    
 
     //Sign
     if(value[0] === "-") {
@@ -309,7 +315,12 @@ const toBinary = (value, exponent, code) => {
         systemState.ieeeBin += "0"
         systemState.MSd = value[0]
     }
-    systemState.MSdBin = BigInt(systemState.MSd).toString(2).padStart(4, "0")
+
+    if(code !== "NaN") {
+        systemState.MSdBin = BigInt(systemState.MSd).toString(2).padStart(4, "0")
+    } else {
+        systemState.MSdBin = "NaN"
+    }
 
     switch(code) {
         case "Zero":
